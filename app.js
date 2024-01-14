@@ -12,14 +12,15 @@ config({
 });
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api/v1/users", UserRoute);
-app.use("/api/v1/tasks", TaskRoute);
-app.use(errorMiddleWear);
 app.use(cors({
     origin:[process.env.FRONTEND_URL],
     methods:["GET","POST","PUT","DELETE"],
     credentials:true
 }))
+app.use("/api/v1/users", UserRoute);
+app.use("/api/v1/tasks", TaskRoute);
+app.use(errorMiddleWear);
+
 connect();
 app.listen(process.env.PORT, () => {
     console.log("Server running at port: 4000")
